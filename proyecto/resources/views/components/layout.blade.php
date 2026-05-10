@@ -22,36 +22,23 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <x-nav-link route="home" > Home </x-nav-link>
+                            <x-nav-link route="home"> Home </x-nav-link>
                         </li>
                         <li class="nav-item">
-                            <x-nav-link route="about" > Quienes Somos </x-nav-link>
+                            <x-nav-link route="services.index"> Servicios </x-nav-link>
                         </li>
                         <li class="nav-item">
-                            <x-nav-link route="movies.index" > Peliculas </x-nav-link>
+                            <x-nav-link route="blog.index"> Blog </x-nav-link>
                         </li>
-                        @auth
-                            <li class="nav-item">
-                                <form action="{{ url('/cerrar-sesion') }}" method="POST">
-                                    <button type="submit" class="nav-link">
-                                        {{ auth()->user()->email }} (Cerrar Sesión)
-                                    </button>
-                                </form>
-                            </li>
-                        @else
-                            <li class="nav-item">
-                                <x-nav-link route="auth.login" > Iniciar Sesión </x-nav-link>
-                            </li>
-                        @endauth
                     </ul>
                 </div>
             </div>
         </nav>
         <main class="container p-4">
             @if(session()->has('feedback.message'))
-               <div class="alert alert-{{ session()->get('feedback.type', 'success') }}">
-                    {!! session()->get('feedback.message') !!}
-                </div>
+            <div class="alert alert-{{ session()->get('feedback.type', 'success') }}">
+                {!! session()->get('feedback.message') !!}
+            </div>
             @endif
             {{ $slot }}
         </main>
@@ -64,4 +51,3 @@
 </body>
 
 </html>
-

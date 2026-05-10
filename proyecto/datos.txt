@@ -1,0 +1,17 @@
+Escuela de Arte Multimedial Da Vinci
+CARRERA: Analista de Sistemas
+MATERIA: Producción Web
+TRABAJO PRÁCTICO: Primer Parcial
+PROFESOR: Carlos Ferrer
+ALUMNO/S: Raijman, Yannick
+CUATRIMESTRE: 1
+AÑO: 2026
+TURNO: Mañana
+COMISIÓN: ACM3AP
+
+Pasos para correr el proyecto:
+1. composer install
+2. Copiar .env.example a .env y configurar conexión a MySQL
+3. php artisan key:generate
+4. php artisan migrate --seed
+5. php artisan serve
