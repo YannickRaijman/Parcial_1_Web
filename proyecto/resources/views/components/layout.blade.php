@@ -30,6 +30,20 @@
                         <li class="nav-item">
                             <x-nav-link route="blog.index"> Blog </x-nav-link>
                         </li>
+                        @auth
+                        <li class="nav-item">
+                            <form action="{{ route('auth.logout') }}" method="POST">
+                                @csrf
+                                <button type="submit" class="nav-link btn btn-link">
+                                    {{ auth()->user()->email }} (Cerrar Sesión)
+                                </button>
+                            </form>
+                        </li>
+                        @else
+                        <li class="nav-item">
+                            <x-nav-link route="auth.login"> Iniciar Sesión </x-nav-link>
+                        </li>
+                        @endauth
                     </ul>
                 </div>
             </div>

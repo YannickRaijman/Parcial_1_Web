@@ -8,18 +8,15 @@ use Illuminate\Http\Request;
 class ServiceController extends Controller
 {
     public function index() {
-        // Trae todos los servicios de la base de datos
         $services = Service::all();
         return view('services.index', ['services' => $services]);
     }
 
     public function create() {
-        // Muestra el formulario
         return view('services.create');
     }
 
     public function store(Request $request) {
-        // Valida los datos y los guarda
         $request->validate([
             'title' => 'required|min:3',
             'description' => 'required',
@@ -31,5 +28,39 @@ class ServiceController extends Controller
         return redirect()
             ->route('services.index')
             ->with('feedback.message', 'El servicio se creó correctamente.');
+    }
+
+    public function edit(int $id) {
+        $service = Service::findOrFail($id);
+        return view('services.edit', ['service' => $service]);
+    }
+
+    public function update(Request $request, int $id) {
+        $request->validate([
+            'title' => 'required|min:3',
+            'description' => 'required',
+            'price' => 'required|numeric',
+        ]);
+
+        $service = Service::findOrFail($id);
+        $service->update($request->all());
+
+        return redirect()
+            ->route('services.index')
+            ->with('feedback.message', 'El servicio se actualizó correctamente.');
+    }
+
+    public function delete(int $id) {
+        $service = Service::findOrFail($id);
+        return view('services.delete', ['service' => $service]);
+    }
+
+    public function destroy(int $id) {
+        $service = Service::findOrFail($id);
+        $service->delete();
+
+        return redirect()
+            ->route('services.index')
+            ->with('feedback.message', 'El servicio se eliminó correctamente.');
     }
 }

@@ -21,7 +21,7 @@ class AuthController extends Controller
 
         if(Auth::attempt($credentials)){
             return redirect()
-                ->intended(route('movies.index'))
+                ->intended(route('services.index'))
                 ->with('feedback.message', 'Sesión iniciada con Exito. ¡Bienvenido!');
         }
 

@@ -27,3 +27,23 @@ Route::post('iniciar-sesion', [\App\Http\Controllers\AuthController::class, 'aut
 
 Route::post('cerrar-sesion', [\App\Http\Controllers\AuthController::class, 'logout'])
     ->name('auth.logout');
+
+Route::get('/servicios/{id}/editar', [\App\Http\Controllers\ServiceController::class, 'edit'])
+    ->middleware('auth')
+    ->name('services.edit')
+    ->whereNumber('id');
+
+Route::put('/servicios/{id}/editar', [\App\Http\Controllers\ServiceController::class, 'update'])
+    ->middleware('auth')
+    ->name('services.update')
+    ->whereNumber('id');
+
+Route::get('/servicios/{id}/eliminar', [\App\Http\Controllers\ServiceController::class, 'delete'])
+    ->middleware('auth')
+    ->name('services.delete')
+    ->whereNumber('id');
+
+Route::delete('/servicios/{id}/eliminar', [\App\Http\Controllers\ServiceController::class, 'destroy'])
+    ->middleware('auth')
+    ->name('services.destroy')
+    ->whereNumber('id');
