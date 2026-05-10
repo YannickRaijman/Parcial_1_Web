@@ -1,19 +1,23 @@
-<x-layout title="Nuestros Servicios">
-    <section>
-        <h2>Servicios Disponibles</h2>
-        
-        <article class="mb-4">
-            <h3>Mantenimiento de PC (Preventivo y Correctivo)</h3>
-            <p>Diagnóstico completo, limpieza de hardware y reinstalación de sistema operativo si es necesario.</p>
-            <p><strong>Precio base:</strong> $15.000</p>
-            <button class="btn btn-primary">Contratar Servicio</button>
-        </article>
+<x-layout title="Servicios">
+    <h1>Nuestros Servicios</h1>
 
-        <article class="mb-4">
-            <h3>Desarrollo Web Frontend Junior</h3>
-            <p>Maquetación de sitios web institucionales con HTML semántico, CSS y Bootstrap.</p>
-            <p><strong>Precio base:</strong> $50.000</p>
-            <button class="btn btn-primary">Contratar Servicio</button>
-        </article>
-    </section>
+    @auth
+        <div class="mb-3">
+            <a href="{{ route('services.create') }}" class="btn btn-success">Crear Nuevo Servicio</a>
+        </div>
+    @endauth
+
+    <div class="row">
+        @foreach($services as $service)
+            <div class="col-md-4 mb-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h3>{{ $service->title }}</h3>
+                        <p>{{ $service->description }}</p>
+                        <p><strong>${{ $service->price }}</strong></p>
+                    </div>
+                </div>
+            </div>
+        @endforeach
+    </div>
 </x-layout>
